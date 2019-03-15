@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class buildManager : MonoBehaviour
@@ -17,15 +16,32 @@ public class buildManager : MonoBehaviour
     }
 
     public GameObject standardTurretPrefab;
-    public GameObject anotherTurretPrefab;
+    public GameObject missileLauncherPrefab;
+    public GameObject BuildEffectPrefab;
 
-    private GameObject turretToBuild;
+    private TorretBluePrint turretToBuild;
 
-    public GameObject GetTurretToBuild()
+
+    public bool CanBuild { get { return turretToBuild != null; }}
+    public bool HasMoney { get { return PlayerStats.Money >=turretToBuild.cost; }}
+
+    public void BuildTurretOn(Node node)
     {
-        return turretToBuild;
+        if (PlayerStats.Money < turretToBuild.cost)
+        {
+            Debug.Log("not enough money");
+            return;
+        }
+        PlayerStats.Money -= turretToBuild.cost;
+
+
+        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab,node.GetBuildPosition(), Quaternion.identity);
+        node.turret = turret;
+
+        GameObject effect = (GameObject)Instantiate(BuildEffectPrefab, node.GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 2f);
     }
-    public void SetTurretToBuild(GameObject turret)
+    public void SelectTorretToBuild(TorretBluePrint turret)
     {
         turretToBuild = turret;
     }
