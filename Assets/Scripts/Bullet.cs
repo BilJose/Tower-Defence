@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Transform target;
-
+    public int damage = 30;
     public GameObject impactEffect;
     public float speed = 70f;
 
@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
     {
 
         GameObject effecIns= (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effecIns, 3.9f);
+        Destroy(effecIns, 2f);
 
         if(explosionRadious > 0f)
         {
@@ -70,7 +70,13 @@ public class Bullet : MonoBehaviour
     }
     void Damage(Transform enemy)
     {
-        Destroy(enemy.gameObject);
+
+        Enemy e =  enemy.GetComponent<Enemy>();
+
+        if(e != null)
+        {
+            e.TakeDamage(damage);
+        }
     }
     void OnDawGizmosSelected()
     {

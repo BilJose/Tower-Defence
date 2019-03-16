@@ -90,7 +90,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.74
+  m_Radius: 0.53
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &937493625
 MonoBehaviour:
@@ -105,3 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  enemyDeathEffect: {fileID: 1489695312744211227, guid: 0b7fa5b35fbb9c646aaba8f972026f69,
+    type: 3}
+  currencyEarn: 15
+  health: 100

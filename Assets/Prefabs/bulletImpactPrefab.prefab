@@ -46,7 +46,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -3739,7 +3739,7 @@ ParticleSystem:
       m_Bits: 4294967295
     maxCollisionShapes: 256
     quality: 1
-    voxelSize: 0.0001
+    voxelSize: 0.12
     collisionMessages: 0
     collidesWithDynamic: 1
     interiorCollisions: 0
