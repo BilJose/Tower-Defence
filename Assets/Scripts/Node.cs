@@ -14,8 +14,14 @@ public class Node : MonoBehaviour
     private Color startColor;
 
     buildManager BuildManager;
-    [Header("optional")]
+    [HideInInspector]
     public GameObject turret;
+    [HideInInspector]
+    public TurretBluePrint turretBluePrint;
+    [HideInInspector]
+    public bool isUpgraded;
+
+
     void Start()
     {
         
@@ -35,17 +41,55 @@ public class Node : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (!BuildManager.CanBuild)
-            return;
+        
         if(turret != null)
         {
-            Debug.Log("Can`t build there - Todo: Display O n Screne");
+            BuildManager.SelectNode(this);
             return;
         }
 
-        //build a tower
-        BuildManager.BuildTurretOn(this);
+        if (!BuildManager.CanBuild)
+            return;
 
+        //build a tower
+        BuildTurret(BuildManager.GetTurretToBuild());
+
+    }
+    void BuildTurret(TurretBluePrint bluePrint)
+    {
+
+        if (PlayerStats.Money < bluePrint.cost)
+        {
+            Debug.Log("not enough money");
+            return;
+        }
+        PlayerStats.Money -= bluePrint.cost;
+        turretBluePrint = bluePrint;
+
+        GameObject _turret = (GameObject)Instantiate(bluePrint.prefab, GetBuildPosition(), Quaternion.identity);
+        turret = _turret;
+
+        GameObject effect = (GameObject)Instantiate(BuildManager.buildEffectPrefab, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 2f);
+    }
+
+    public void UpgradeTurret()
+    {
+        if (PlayerStats.Money < turretBluePrint.upgradeCost)
+        {
+            Debug.Log("not enough money to upgrade");
+            return;
+        }
+        PlayerStats.Money -= turretBluePrint.upgradeCost;
+        //get rid of the old turret
+        Destroy(turret);
+        //build new turret
+
+        GameObject _turret = (GameObject)Instantiate(turretBluePrint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+        turret = _turret;
+
+        GameObject effect = (GameObject)Instantiate(BuildManager.buildEffectPrefab, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 2f);
     }
     void OnMouseEnter()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     private Transform target;
+    private Enemy targetEnemy;
 
     [Header("General")]
     public float range = 15f;
@@ -18,6 +19,8 @@ public class Turret : MonoBehaviour
     public LineRenderer lineRenderer;
     public ParticleSystem ImpactEffect;
     public Light impactLight;
+    public int damageOverTime = 20;
+    public float slowPct = .5f;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -51,6 +54,7 @@ public class Turret : MonoBehaviour
         if(nearestEnemy != null && shortestDistance<= range)
         {
             target = nearestEnemy.transform;
+            targetEnemy = nearestEnemy.GetComponent<Enemy>();
         }
         else
         {
@@ -102,6 +106,9 @@ public class Turret : MonoBehaviour
     }
     void Laser()
     {
+        targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
+        targetEnemy.Slow(slowPct);
+
         if (!lineRenderer.enabled)
         {
             lineRenderer.enabled = true;

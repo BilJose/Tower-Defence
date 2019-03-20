@@ -5,9 +5,9 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
 
-    public TorretBluePrint standardTurret;
-    public TorretBluePrint missileLauncher;
-    public TorretBluePrint laserBeamer;
+    public TurretBluePrint standardTurret;
+    public TurretBluePrint missileLauncher;
+    public TurretBluePrint laserBeamer;
 
     buildManager BuildManager;
 
@@ -19,16 +19,16 @@ public class Shop : MonoBehaviour
     public void SelectStandardTurret()
     {
         Debug.Log("Standard Turret purchased");
-        BuildManager.SelectTorretToBuild(standardTurret);
+        BuildManager.SelectTurretToBuild(standardTurret);
     }
     public void SelectMissileLauncher()
     {
         Debug.Log("Missile Launcher purchased");
-        BuildManager.SelectTorretToBuild(missileLauncher);
+        BuildManager.SelectTurretToBuild(missileLauncher);
     }
     public void SelectLaserBeamer()
     {
         Debug.Log("Laser Beamer purchased");
-        BuildManager.SelectTorretToBuild(laserBeamer);
+        BuildManager.SelectTurretToBuild(laserBeamer);
     }
 }
