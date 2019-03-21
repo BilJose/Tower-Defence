@@ -91,6 +91,19 @@ public class Node : MonoBehaviour
         GameObject effect = (GameObject)Instantiate(BuildManager.buildEffectPrefab, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 2f);
     }
+
+    public void SellTurret()
+    {
+        PlayerStats.Money += turretBluePrint.GetSellAmount();
+
+
+        //spawn effect
+        GameObject _sellEffect = (GameObject)Instantiate(BuildManager.SellEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(_sellEffect, 3f);
+
+        Destroy(turret);
+        turretBluePrint = null;
+    }
     void OnMouseEnter()
     {
         if (EventSystem.current.IsPointerOverGameObject())

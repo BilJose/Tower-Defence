@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1342056007143877842}
   - component: {fileID: 1342056007151132433}
   m_Layer: 0
-  m_Name: MissileLauncher
+  m_Name: MissileLauncher_upgraded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 1342056007151132432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.92, y: 0.5, z: -3.76}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 4869031734381064787}
   - {fileID: 1342056007151092534}
@@ -95,13 +95,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6fa57dd74e5d7248a52fb226f8d1b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.25
-  range: 18
+  range: 20
+  fireRate: 0.44
+  bulletPrefab: {fileID: 6755071429709613874, guid: 5b32ba9a33c7d7542b8d9d8518190999,
+    type: 3}
+  useLaser: 0
+  lineRenderer: {fileID: 0}
+  ImpactEffect: {fileID: 0}
+  impactLight: {fileID: 0}
+  damageOverTime: 20
+  slowPct: 0.5
   enemyTag: Enemy
   turnSpeed: 10
   partToRotate: {fileID: 4869031734381064787}
-  bulletPrefab: {fileID: 1184173753509365235, guid: 0144b230b68f3c24fb4fade12be3f3d5,
-    type: 3}
   firePoint: {fileID: 2476968362196351528}
 --- !u!1 &1342056007151132436
 GameObject:
@@ -160,8 +166,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03d24e06e08b2e24bb771e045494ac90, type: 2}
-  - {fileID: 2100000, guid: e3435cb5aa5e0ac48b45f32c22f09974, type: 2}
+  - {fileID: 2100000, guid: c995ead8301fa37469a6c3d42e06545f, type: 2}
+  - {fileID: 2100000, guid: 77c5c235c5aa956418bdbe610d944e62, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -238,8 +244,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03d24e06e08b2e24bb771e045494ac90, type: 2}
-  - {fileID: 2100000, guid: 82e153ebd4822834f81ecac95a249fb3, type: 2}
+  - {fileID: 2100000, guid: c995ead8301fa37469a6c3d42e06545f, type: 2}
+  - {fileID: 2100000, guid: 2f690de5fd5a434488652301630aab8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
